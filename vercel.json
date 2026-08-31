@@ -16,16 +16,13 @@
     ],
     "routes": [
         {
-            "src": "/client.js",
-            "dest": "client/client.js"
+            "src": "/(.*)",
+            "dest": "client/pages/$1/index.html"
         },
         {
             "src": "/(.*)",
-            "dest": "client/public/index.html"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "server/server.js"
+            "dest": "client/pages/404/index.html",
+            "status": 404
         }
     ]
 }
