@@ -7,3 +7,5 @@ app.use(express.json())
 app.get('/api/test', (req, res) => {
     res.json({ status: 'ok' })
 })
+
+export default app
