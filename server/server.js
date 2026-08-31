@@ -5,5 +5,5 @@ const app = express()
 app.use(express.json())
 
 app.get('/api/test', (req, res) => {
-    console.log("TEST")
+    res.json({ status: 'ok' })
 })
