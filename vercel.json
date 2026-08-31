@@ -16,6 +16,10 @@
     ],
     "routes": [
         {
+            "src": "/",
+            "dest": "client/pages/index.html"
+        },
+        {
             "src": "/(.*)",
             "dest": "client/pages/$1/index.html"
         },
