@@ -4,6 +4,6 @@ const app = express()
 
 app.use(express.json())
 
-app.get('/', (req, res) => {
-    res.redirect("/test")
+app.get('/api/test', (req, res) => {
+    
 })
