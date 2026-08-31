@@ -2,13 +2,13 @@
 <html>
 <head><title>象棋</title></head>
 <body>
-    即將完成 😊
+    Index.html
     <script>
         async function test() {
             try {
-                const response = await fetch('/api/board');
+                const response = await fetch('/api/test');
                 const data = await response.json();
-                console.log('Board data:', data);
+                console.log('Data:', data);
                 return data;
             } catch (error) {
                 console.error('Error fetching board:', error);
