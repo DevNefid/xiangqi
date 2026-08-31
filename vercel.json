@@ -25,13 +25,13 @@
         },
         {
             "src": "/(.*)",
-            "dest": "client/pages/auto/$1.html",
-            "continue": true
+            "dest": "client/pages/404.html",
+            "status": 404
         },
         {
             "src": "/(.*)",
-            "dest": "client/pages/404.html",
-            "status": 404
+            "dest": "client/pages/auto/$1.html",
+            "continue": true
         }
     ]
 }
