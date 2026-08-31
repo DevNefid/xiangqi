@@ -24,11 +24,11 @@
             "dest": "client/pages/index.html"
         },
         {
-            "handle": "filesystem"
-        },
-        {
             "src": "/(.*)",
             "dest": "client/pages/auto/$1.html"
+        },
+        {
+            "handle": "filesystem"
         },
         {
             "src": "/(.*)",
