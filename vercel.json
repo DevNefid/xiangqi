@@ -30,8 +30,7 @@
         {
             "handle": "miss",
             "src": "/(.*)",
-            "dest": "client/pages/404.html",
-            "status": 404
+            "dest": "client/pages/404.html"
         }
     ]
 }
