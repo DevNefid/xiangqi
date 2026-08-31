@@ -24,13 +24,11 @@
             "dest": "client/pages/index.html"
         },
         {
-            "handle": "filesystem"
-        },
-        {
             "src": "/(.*)",
             "dest": "client/pages/auto/$1.html"
         },
         {
+            "handle": "miss",
             "src": "/(.*)",
             "dest": "client/pages/404.html",
             "status": 404
