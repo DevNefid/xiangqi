@@ -2,11 +2,11 @@
     "version": 2,
     "builds": [
         {
-            "src": "client/public/index.html", 
+            "src": "client/pages/index.html",
             "use": "@vercel/static"
         },
         {
-            "src": "client/client.js", 
+            "src": "client/pages/**/index.html",
             "use": "@vercel/static"
         },
         {
