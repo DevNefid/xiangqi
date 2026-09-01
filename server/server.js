@@ -1,8 +1,12 @@
 import express from 'express'
+import { createClient } from '@supabase/supabase-js'
 
-let sessions = []
+const supabase = createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_ANON_KEY
+)
 
-function generate_session_id() {
+function generate_session_enterid() {
     return Math.floor(Math.random() * 900000 + 100000)
 }
 
@@ -10,20 +14,38 @@ const app = express()
 
 app.use(express.json())
 
-app.post('/api/create-session', (req, res) => {
+app.post('/api/create-session', async (req, res) => {
     try {
-        let session_id = generate_session_id()
-        let host_id = crypto.randomUUID()
-        sessions.push({
-            id: session_id,
-            player1: { id: host_id, color: 'b' },
-            player2: undefined
+        const host_id = crypto.randomUUID()
+        const session_id = crypto.randomUUID()
+        const session_enterid = generate_session_enterid()
+        const { data, error } = await supabase
+            .from('sessions')
+            .insert({
+                session_id: session_id,
+                players: {
+                    [host_id]: {
+                        is_host: true,
+                        color: "r"
+                    }
+                },
+                status: 'waiting'
+            })
+            .select()
+
+        if (error) {
+            return res.status(500).json({ success: false })
+        }
+
+        res.status(201).json({
+            success: true,
+            host_id: host_id,
+            session_id: session_id,
+            session_enterid: session_enterid
         })
-        res.status(200).json({ success: true, host_id: host_id, session_id: session_id })
     } catch (error) {
         res.status(500).json({ success: false })
     }
-
 })
 
 export default app
