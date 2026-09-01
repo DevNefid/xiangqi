@@ -10,10 +10,6 @@
             "use": "@vercel/static"
         },
         {
-            "src": "server/invalid_api.html",
-            "use": "@vercel/static"
-        },
-        {
             "src": "client/pages/auto/**",
             "use": "@vercel/static"
         },

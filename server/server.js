@@ -1,4 +1,6 @@
 import express from 'express'
+import path from 'path'
+import { fileURLToPath } from 'url';
 
 const app = express()
 
@@ -9,7 +11,7 @@ app.get('/api/test', (req, res) => {
 })
 
 app.use("/api/*", (req, res) => {
-    res.status(404).sendFile('/invalid_api.html')
+    res.status(404).sendFile(path.join(__dirname, 'invalid_api.html'))
 })
 
 export default app
