@@ -8,7 +8,7 @@ app.get('/api/test', (req, res) => {
     res.json({ status: 'ok' })
 })
 
-app.get("/api/*", (req, res) => {
+app.all("/api/*", (req, res) => {
     res.json({})
 })
 
