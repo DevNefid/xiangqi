@@ -9,7 +9,7 @@ app.get('/api/test', (req, res) => {
 })
 
 app.get("/api/*", (req, res) => {
-    res.status(404)
+    res.json({})
 })
 
 export default app
