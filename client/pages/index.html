@@ -4,7 +4,11 @@
 <body>
     Index.html
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            fetch('/api/create-session')
+                .then(r => r.json())
+                .then(console.log)
+                .catch(err => console.error('Error:', err));
         })
     </script>
 </body>
