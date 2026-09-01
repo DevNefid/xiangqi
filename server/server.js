@@ -67,7 +67,7 @@ app.post('/api/create-session', async (req, res) => {
             .select()
 
         if (error) {
-            console.error('Error#3: failed to push supabase table')
+            console.error('Error#3: failed to update supabase table: ', error.message)
             return res.status(500).json({ success: false })
         }
 
