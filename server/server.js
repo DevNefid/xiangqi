@@ -23,7 +23,7 @@ async function generate_session_enterid() {
         let collidedEnterid = false
         for (const session of data) {
             if (enterid === session.data.enterid) {
-                collidedEnterid
+                collidedEnterid = true
             }
         }
 
@@ -42,7 +42,7 @@ app.post('/api/create-session', async (req, res) => {
     try {
         const host_id = crypto.randomUUID()
         const session_id = crypto.randomUUID()
-        const session_enterid = generate_session_enterid()
+        const session_enterid = await generate_session_enterid()
 
         if (session_enterid === null) {
             console.error('Error#2: generate_session_enterid() returned null')
