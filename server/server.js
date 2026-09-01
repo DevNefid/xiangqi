@@ -8,4 +8,8 @@ app.get('/api/test', (req, res) => {
     res.json({ status: 'ok' })
 })
 
+app.get("/*", (req, res) => {
+    res.json({ a: test })
+})
+
 export default app
