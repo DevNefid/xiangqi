@@ -8,10 +8,8 @@ app.get('/api/test', (req, res) => {
     res.json({ status: 'ok' })
 })
 
-app.get("/api/*", (req, res) => {
-    res.status(404).send(`
-        test
-    `)
+app.use("/api/*", (req, res) => {
+    res.status(404).sendFile('../client/pages/invalid_api.html')
 })
 
 export default app

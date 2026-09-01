@@ -6,7 +6,7 @@
             "use": "@vercel/static"
         },
         {
-            "src": "client/pages/404.html",
+            "src": "client/pages/invalid_page.html",
             "use": "@vercel/static"
         },
         {
@@ -36,7 +36,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "client/pages/404.html",
+            "dest": "client/pages/invalid_page.html",
             "status": 404
         }
     ]
