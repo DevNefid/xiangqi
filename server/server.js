@@ -2,9 +2,9 @@ import express from 'express'
 import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = process.env.SUPABASE_URL
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY
+const supabaseKey = process.env.SUPABASE_SERVER_KEY
 
-if (!supabaseUrl || !supabaseAnonKey) {
+if (!supabaseUrl || !supabaseKey) {
   console.error('缺少 Supabase 环境变量！')
 }
 
@@ -34,7 +34,7 @@ async function generate_session_enterid() {
 }
 
 const app = express()
-const supabase = createClient(supabaseUrl, supabaseAnonKey)
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 app.use(express.json())
 
