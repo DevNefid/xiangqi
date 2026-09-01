@@ -45,7 +45,7 @@ app.post('/api/create-session', async (req, res) => {
         const session_enterid = generate_session_enterid()
 
         if (session_enterid === null) {
-
+            res.status(500).json({ success: false })
         }
 
         const { data, error } = await supabase
