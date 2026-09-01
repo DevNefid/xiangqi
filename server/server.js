@@ -9,7 +9,7 @@ app.get('/api/test', (req, res) => {
 })
 
 app.use("/api/*", (req, res) => {
-    res.status(404).sendFile('../client/pages/invalid_api.html')
+    res.status(404).sendFile('/invalid_api.html')
 })
 
 export default app
