@@ -45,7 +45,8 @@ app.post('/api/create-session', async (req, res) => {
         const session_enterid = generate_session_enterid()
 
         if (session_enterid === null) {
-            res.status(500).json({ success: false })
+            console.error('Error#2: generate_session_enterid() returned null')
+            return res.status(500).json({ success: false })
         }
 
         const { data, error } = await supabase
@@ -66,6 +67,7 @@ app.post('/api/create-session', async (req, res) => {
             .select()
 
         if (error) {
+            console.error('Error#3: failed to push supabase table')
             return res.status(500).json({ success: false })
         }
 
@@ -76,6 +78,7 @@ app.post('/api/create-session', async (req, res) => {
             session_enterid: session_enterid
         })
     } catch (error) {
+        console.error('Error#1: ', error)
         res.status(500).json({ success: false })
     }
 })
