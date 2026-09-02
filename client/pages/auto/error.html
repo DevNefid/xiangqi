@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>象棋</title></head>
+<body>
+    <p id='err'>Error</p>
+    <script>
+        const error = sessionStorage.getItem('error')
+        if (error === null) {
+            document.getElementById('err').textContent = '沒有錯誤'
+        } else {
+            document.getElementById('err').textContent = '錯誤: ' + error
+        }
+    </script>
+</body>
+</html>

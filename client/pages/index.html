@@ -4,21 +4,20 @@
 <body>
     Index.html
     <button id='createSession'>創建房間</button>
+    <script src="../shared/scripts/startup.js"></script>
     <script>
-        /*document.addEventListener('DOMContentLoaded', async () => {
-            
-        })*/
-
         document.getElementById('createSession').addEventListener('click', async function() {
-            const res = await fetch('/api/create-session', {method: 'POST', headers: { 'Content-Type': 'application/json' }})
+            const res = await fetch('/api/create-session', { method: 'POST', headers: { 'Content-Type': 'application/json' }})
             if (!res.ok) {
                 console.error('Error: failed to create session')
                 return
             }
             
             const data = await res.json()
+            localStorage.setItem('session-id', data.session_id)
+            localStorage.setItem('player-id', data.host_id)
+            localStorage.setItem('session-enterid', data.session_enterid)
 
-            //const url = new URL('/session', window.location.origin)
             window.location.href = window.location.origin + '/session'
         })
     </script>

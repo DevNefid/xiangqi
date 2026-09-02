@@ -9,27 +9,34 @@ if (!supabaseUrl || !supabaseKey) {
 }
 
 async function generate_session_enterid() {
-    while (true) {
-        const enterid = Math.floor(Math.random() * 900000 + 100000)
+    try {
         const { data, error } = await supabase
             .from('sessions')
             .select('*')
             .eq('status', 'waiting')
 
         if (error) {
+            console.log('Error#7: failed to read supabase table: ', error.message)
             return null
         }
-
-        let collidedEnterid = false
-        for (const session of data) {
-            if (enterid === session.data.enterid) {
-                collidedEnterid = true
+    
+        while (true) {
+            const enterid = Math.floor(Math.random() * 900000 + 100000)
+    
+            let collidedEnterid = false
+            for (const session of data) {
+                if (enterid === session.data.enterid) {
+                    collidedEnterid = true
+                }
+            }
+    
+            if (collidedEnterid === false) {
+                return enterid
             }
         }
-
-        if (collidedEnterid === false) {
-            return enterid
-        }
+    } catch (error) {
+        console.log('Error#4: generate_session_enterid() failed: ', error)
+        return null
     }
 }
 
@@ -78,6 +85,30 @@ app.post('/api/create-session', async (req, res) => {
         })
     } catch (error) {
         console.error('Error#1: ', error)
+        res.sendStatus(500)
+    }
+})
+
+app.get('/api/session-exists', async (req, res) => {
+    try {
+        const { data, error } = await supabase
+            .from('sessions')
+            .select('session_id')
+            .eq('id', req.query.session_id)
+            .single
+
+        if (error) {
+            console.error('Error#7: failed to read supabase table: ', error.message)
+            return res.sendStatus(500)
+        }
+
+        if (data) {
+            res.status(200).json({ exists: true })
+        } else {
+            res.status(200).json({ exists: false })
+        }
+    } catch (error) {
+        console.error('Error#6: ', error)
         res.sendStatus(500)
     }
 })
