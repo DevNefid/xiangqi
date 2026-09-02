@@ -17,10 +17,10 @@
             }
             
             const data = await res.json()
-            const url = new URL('https://xiangqi1.vercel.app/session')
+            const url = new URL('/session', window.location.origin)
             url.searchParams.set('session-id', data.session_id)
             url.searchParams.set('player-id', data.host_id)
-            window.history.pushState({}, '', url)
+            window.location.href = url.toString()
         })
     </script>
 </body>
