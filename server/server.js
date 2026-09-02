@@ -46,7 +46,7 @@ app.post('/api/create-session', async (req, res) => {
 
         if (session_enterid === null) {
             console.error('Error#2: generate_session_enterid() returned null')
-            return res.status(500).json({ success: false })
+            return res.sendStatus(500)
         }
 
         const { data, error } = await supabase
@@ -56,7 +56,7 @@ app.post('/api/create-session', async (req, res) => {
                 players: {
                     [host_id]: {
                         is_host: true,
-                        color: "r"
+                        color: 'r'
                     }
                 },
                 status: 'waiting',
@@ -68,18 +68,17 @@ app.post('/api/create-session', async (req, res) => {
 
         if (error) {
             console.error('Error#3: failed to update supabase table: ', error.message)
-            return res.status(500).json({ success: false })
+            return res.sendStatus(500)
         }
 
         res.status(201).json({
-            success: true,
             host_id: host_id,
             session_id: session_id,
             session_enterid: session_enterid
         })
     } catch (error) {
         console.error('Error#1: ', error)
-        res.status(500).json({ success: false })
+        res.sendStatus(500)
     }
 })
 

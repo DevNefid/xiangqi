@@ -4,11 +4,23 @@
 <body>
     Index.html
     <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            fetch('/api/create-session')
-                .then(r => r.json())
-                .then(console.log)
-                .catch(err => console.error('Error:', err));
+        <button id='createSession'>創建房間</button>
+        /*document.addEventListener('DOMContentLoaded', async () => {
+            
+        })*/
+
+        document.getElementById('createSession').addEventListener('click', async function() {
+            const res = await fetch('/api/create-session', {method: 'POST', headers: { 'Content-Type': 'application/json' }})
+            if (!res.ok) {
+                console.error('Error: failed to create session')
+                return
+            }
+            
+            const data = await res.json()
+            const url = new URL('/session')
+            url.searchParams.set('session-id', data.session_id)
+            url.searchParams.set('player-id', data.host_id)
+            window.history.pushState({}, '', url)
         })
     </script>
 </body>
